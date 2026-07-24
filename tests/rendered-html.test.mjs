@@ -12,7 +12,8 @@ test("finished site replaces the starter preview", async () => {
   assert.match(page, /JS Cleaners/);
   assert.match(page, /Care you can feel/);
   assert.match(page, /google\.com\/maps\/dir/);
-  assert.match(page, /handleRequest/);
+  assert.doesNotMatch(page, /handleRequest|Prepare my text|sms:/);
+  assert.doesNotMatch(page, /—|&mdash;|&#8212;/);
   assert.match(layout, /og\.png/);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

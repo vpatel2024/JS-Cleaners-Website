@@ -25,9 +25,9 @@ body {
   font-size: 16px;
   line-height: 1.6;
 }
-body, button, input, select, textarea { font-family: var(--sans); }
+body, button { font-family: var(--sans); }
 a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; }
+button { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 img { display: block; max-width: 100%; }
 
@@ -283,12 +283,12 @@ h1 em { color: var(--coral); font-weight: 500; }
   align-items: end;
   gap: 10vw;
 }
-.section-heading h2, .reviews-heading h2, .story-copy h2, .request-intro h2, .visit-details h2 {
+.section-heading h2, .reviews-heading h2, .story-copy h2, .visit-details h2 {
   margin-bottom: 0;
   font-size: clamp(42px, 5.5vw, 76px);
   line-height: 1.04;
 }
-.section-heading > p, .reviews-heading > p, .story-copy > p, .request-intro > p { margin-bottom: 0; color: var(--muted); }
+.section-heading > p, .reviews-heading > p, .story-copy > p { margin-bottom: 0; color: var(--muted); }
 .service-list { border-top: 1px solid var(--line); }
 .service-row {
   min-height: 136px;
@@ -365,43 +365,6 @@ h1 em { color: var(--coral); font-weight: 500; }
 .review-featured .review-avatar { background: white; }
 .review-note { margin: 24px 0 0; color: var(--muted); font-size: 11px; text-align: center; }
 
-.request-section {
-  padding: clamp(88px, 10vw, 150px) clamp(22px, 8vw, 125px);
-  display: grid;
-  grid-template-columns: minmax(280px, 0.65fr) minmax(400px, 1fr);
-  gap: clamp(60px, 10vw, 160px);
-  background: var(--navy);
-  color: white;
-}
-.request-intro h2 { margin-bottom: 28px; color: white; }
-.request-intro > p { color: #c5d0d9; }
-.text-call-link { margin-top: 44px; padding-top: 20px; display: block; border-top: 1px solid rgba(255, 255, 255, 0.22); }
-.text-call-link span, .text-call-link strong { display: block; }
-.text-call-link span { color: #aebdc8; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
-.text-call-link strong { margin-top: 5px; color: white; font-family: var(--serif); font-size: 31px; font-weight: 500; }
-.request-form { display: grid; gap: 24px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.request-form label { display: grid; gap: 8px; color: #dfe7ed; font-size: 12px; font-weight: 750; }
-.request-form label span { color: #91a3b2; font-weight: 500; }
-.request-form input, .request-form select, .request-form textarea {
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 0;
-  outline: none;
-  background: transparent;
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-}
-.request-form input, .request-form select { height: 48px; }
-.request-form textarea { padding: 12px 0; resize: vertical; }
-.request-form select option { color: var(--navy); }
-.request-form input:focus, .request-form select:focus, .request-form textarea:focus { border-bottom-color: var(--coral); box-shadow: 0 1px 0 var(--coral); }
-.request-form textarea::placeholder { color: #8297a8; }
-.button-light { width: fit-content; margin-top: 8px; background: var(--paper); color: var(--navy); }
-.form-note { margin: -12px 0 0; color: #91a3b2; font-size: 11px; }
-
 .visit-section { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.8fr); gap: clamp(55px, 8vw, 120px); background: var(--paper); }
 .visit-map { min-height: 640px; border: 12px solid var(--cream); box-shadow: 0 22px 65px rgba(17, 38, 61, 0.12); }
 .visit-map iframe { width: 100%; height: 100%; min-height: 616px; display: block; border: 0; filter: saturate(0.72) contrast(1.04); }
@@ -428,7 +391,15 @@ h1 em { color: var(--coral); font-weight: 500; }
   background: #0b1d2f;
   color: white;
 }
-.footer-brand strong, .footer-brand span { display: block; }
+.footer-brand > .brand-mark {
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  color: var(--navy);
+  border-radius: 50%;
+  line-height: 1;
+}
+.footer-brand strong, .footer-brand div > span { display: block; }
 .footer-brand strong { font-family: var(--serif); font-size: 20px; }
 .footer-brand div span, .footer-meta { color: #95a8b7; font-size: 11px; }
 .footer-contact a { display: block; color: #cdd8df; font-size: 13px; }
@@ -447,8 +418,6 @@ h1 em { color: var(--coral); font-weight: 500; }
   .story-section { grid-template-columns: 1fr; }
   .story-card { min-height: 580px; }
   .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .request-section { grid-template-columns: 1fr; gap: 60px; }
-  .request-intro { max-width: 650px; }
   .visit-section { grid-template-columns: 1fr; }
   .visit-map { min-height: 520px; }
   .visit-map iframe { min-height: 496px; }
@@ -493,7 +462,7 @@ h1 em { color: var(--coral); font-weight: 500; }
   .trust-strip span:nth-child(even) { border-left: 1px solid rgba(255, 255, 255, 0.2); }
   .section { padding: 82px 22px; }
   .section-heading { margin-bottom: 42px; }
-  .section-heading h2, .reviews-heading h2, .story-copy h2, .request-intro h2, .visit-details h2 { font-size: clamp(39px, 12vw, 58px); }
+  .section-heading h2, .reviews-heading h2, .story-copy h2, .visit-details h2 { font-size: clamp(39px, 12vw, 58px); }
   .service-row { padding: 26px 0; grid-template-columns: 36px 1fr; gap: 10px 14px; }
   .service-row p { grid-column: 2; }
   .story-card, .story-copy { padding: 72px 22px; }
@@ -501,9 +470,6 @@ h1 em { color: var(--coral); font-weight: 500; }
   .story-points { grid-template-columns: 1fr; }
   .review-grid { grid-template-columns: 1fr; }
   .review-card { min-height: 270px; }
-  .request-section { padding: 82px 22px; }
-  .form-row { grid-template-columns: 1fr; }
-  .button-light { width: 100%; }
   .visit-section { padding-top: 22px; }
   .visit-map { min-height: 390px; border-width: 8px; }
   .visit-map iframe { min-height: 374px; }
@@ -518,7 +484,7 @@ h1 em { color: var(--coral); font-weight: 500; }
     z-index: 60;
     height: 64px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     background: var(--paper);
     border-top: 1px solid var(--line);
     box-shadow: 0 -10px 30px rgba(17, 38, 61, 0.12);

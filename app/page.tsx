@@ -1,7 +1,6 @@
 "use client";
 
-import type { FormEvent } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const phoneDisplay = "(678) 583-4727";
 const phoneHref = "+16785834727";
@@ -56,7 +55,7 @@ const reviews = [
   },
   {
     quote:
-      "They did an excellent job pressing my son’s military uniform—and provided a rigid hanger.",
+      "They did an excellent job pressing my son’s military uniform. They also provided a rigid hanger.",
     name: "Robert",
     note: "Uniform care customer",
   },
@@ -120,8 +119,6 @@ function getBusinessStatus() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [status, setStatus] = useState({ open: true, label: "Open today" });
-  const [sent, setSent] = useState(false);
-  const minDate = useMemo(() => new Date().toISOString().split("T")[0], []);
 
   useEffect(() => {
     const update = () => setStatus(getBusinessStatus());
@@ -129,24 +126,6 @@ export default function Home() {
     const timer = window.setInterval(update, 60_000);
     return () => window.clearInterval(timer);
   }, []);
-
-  function handleRequest(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const body = [
-      "Hi JS Cleaners! I’d like to ask about a garment.",
-      `Name: ${form.get("name")}`,
-      `Service: ${form.get("service")}`,
-      form.get("needed") ? `Needed by: ${form.get("needed")}` : "",
-      `Details: ${form.get("details")}`,
-      `Best callback number: ${form.get("phone")}`,
-    ]
-      .filter(Boolean)
-      .join("\n");
-    const separator = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? "&" : "?";
-    setSent(true);
-    window.location.href = `sms:${phoneHref}${separator}body=${encodeURIComponent(body)}`;
-  }
 
   return (
     <>
@@ -183,7 +162,7 @@ export default function Home() {
             <div className="eyebrow"><span className="eyebrow-dot" />Your neighborhood dry cleaner</div>
             <h1>Care you can feel.<br /><em>Quality you can see.</em></h1>
             <p className="hero-intro">
-              Family-style service, careful garment work, and a warm welcome—right here in McDonough.
+              Family-style service, careful garment work, and a warm welcome right here in McDonough.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href={`tel:${phoneHref}`}>
@@ -225,7 +204,7 @@ export default function Home() {
             {services.map((service) => (
               <article className="service-row" key={service.title}>
                 <span>{service.number}</span><h3>{service.title}</h3><p>{service.copy}</p>
-                <a href="#request" aria-label={`Ask about ${service.title}`}>Ask us <span aria-hidden="true">↗</span></a>
+                <a href={`tel:${phoneHref}`} aria-label={`Call about ${service.title}`}>Call us <span aria-hidden="true">↗</span></a>
               </article>
             ))}
           </div>
@@ -234,8 +213,8 @@ export default function Home() {
         <section className="story-section">
           <div className="story-card">
             <p className="kicker">The JS difference</p>
-            <blockquote>“Every time I pull up, they greet me by name—even with months between visits.”</blockquote>
-            <p className="story-attribution">— Brittany, recent customer</p>
+            <blockquote>“Every time I pull up, they greet me by name, even with months between visits.”</blockquote>
+            <p className="story-attribution">Brittany, recent customer</p>
           </div>
           <div className="story-copy">
             <p className="kicker">A local gem</p>
@@ -266,38 +245,6 @@ export default function Home() {
           <p className="review-note">Review excerpts were lightly edited for length and clarity.</p>
         </section>
 
-        <section className="request-section" id="request">
-          <div className="request-intro">
-            <p className="kicker">Have a garment in mind?</p><h2>Tell us what you need.</h2>
-            <p>Fill this out and we’ll prepare a text message you can send directly to the shop. For the quickest answer, just give us a call.</p>
-            <a className="text-call-link" href={`tel:${phoneHref}`}><span>Call now</span><strong>{phoneDisplay}</strong></a>
-          </div>
-          <form className="request-form" onSubmit={handleRequest}>
-            <div className="form-row">
-              <label>Your name<input name="name" type="text" autoComplete="name" required /></label>
-              <label>Phone number<input name="phone" type="tel" autoComplete="tel" required /></label>
-            </div>
-            <div className="form-row">
-              <label>What can we help with?
-                <select name="service" required defaultValue="">
-                  <option value="" disabled>Choose a service</option>
-                  <option>Dry cleaning</option><option>Shirt laundry</option>
-                  <option>Alterations or repairs</option><option>Formal wear or uniform</option>
-                  <option>Household item</option><option>Something else</option>
-                </select>
-              </label>
-              <label>Needed by <span>(optional)</span><input name="needed" type="date" min={minDate} /></label>
-            </div>
-            <label>Tell us about the item
-              <textarea name="details" rows={4} placeholder="Example: Hem a prom dress, clean a two-piece suit, press a uniform…" required />
-            </label>
-            <button className="button button-light" type="submit">Prepare my text <span aria-hidden="true">↗</span></button>
-            <p className="form-note" aria-live="polite">
-              {sent ? "Your messaging app should open with the request ready to send." : "Nothing is sent until you approve it in your messaging app."}
-            </p>
-          </form>
-        </section>
-
         <section className="section visit-section" id="visit">
           <div className="visit-map">
             <iframe title="Map showing JS Cleaners in McDonough, Georgia" src="https://www.google.com/maps?q=1664+Hwy+81,+McDonough,+GA+30252&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
@@ -325,7 +272,7 @@ export default function Home() {
       </footer>
 
       <div className="mobile-bar" aria-label="Quick actions">
-        <a href={`tel:${phoneHref}`}>Call</a><a href={directionsUrl} target="_blank" rel="noreferrer">Directions</a><a href="#request">Request</a>
+        <a href={`tel:${phoneHref}`}>Call</a><a href={directionsUrl} target="_blank" rel="noreferrer">Directions</a>
       </div>
     </>
   );

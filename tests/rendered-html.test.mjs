@@ -1,0 +1,24 @@
+import assert from "node:assert/strict";
+import { access, readFile } from "node:fs/promises";
+import test from "node:test";
+
+const root = new URL("../", import.meta.url);
+
+test("finished site replaces the starter preview", async () => {
+  const page = await readFile(new URL("app/page.tsx", root), "utf8");
+  const layout = await readFile(new URL("app/layout.tsx", root), "utf8");
+  const packageJson = await readFile(new URL("package.json", root), "utf8");
+
+  assert.match(page, /JS Cleaners/);
+  assert.match(page, /Care you can feel/);
+  assert.match(page, /google\.com\/maps\/dir/);
+  assert.match(page, /handleRequest/);
+  assert.match(layout, /og\.png/);
+  assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
+  assert.doesNotMatch(packageJson, /react-loading-skeleton/);
+});
+
+test("deployment assets are present", async () => {
+  await access(new URL("public/pressed-shirts.webp", root));
+  await access(new URL(".openai/hosting.json", root));
+});

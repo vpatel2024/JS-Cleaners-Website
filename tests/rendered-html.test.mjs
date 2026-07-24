@@ -23,3 +23,17 @@ test("deployment assets are present", async () => {
   await access(new URL("public/pressed-shirts.webp", root));
   await access(new URL(".openai/hosting.json", root));
 });
+
+test("hours are served from a protected dynamic route", async () => {
+  const home = await readFile(new URL("app/page.tsx", root), "utf8");
+  const hoursPage = await readFile(new URL("app/hours/page.tsx", root), "utf8");
+  const worker = await readFile(new URL("worker/index.ts", root), "utf8");
+
+  assert.doesNotMatch(home, /7:00 AM/);
+  assert.match(home, /href="\/hours"/);
+  assert.match(hoursPage, /dynamic = "force-dynamic"/);
+  assert.match(hoursPage, /robots:/);
+  assert.match(worker, /HOURS_PAGE_PASSWORD/);
+  assert.match(worker, /WWW-Authenticate/);
+  assert.doesNotMatch(worker, /HOURS_PAGE_PASSWORD\s*[:=]\s*["'][^"']+/);
+});

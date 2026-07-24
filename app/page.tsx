@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const phoneDisplay = "(678) 583-4727";
 const phoneHref = "+16785834727";
@@ -73,59 +73,8 @@ const reviews = [
   },
 ];
 
-const hours = [
-  ["Monday", "7:00 AM – 7:00 PM"],
-  ["Tuesday", "7:00 AM – 7:00 PM"],
-  ["Wednesday", "7:00 AM – 7:00 PM"],
-  ["Thursday", "7:00 AM – 7:00 PM"],
-  ["Friday", "7:00 AM – 7:00 PM"],
-  ["Saturday", "8:30 AM – 1:00 PM"],
-  ["Sunday", "Closed"],
-];
-
-function getBusinessStatus() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
-    weekday: "short",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-  }).formatToParts(new Date());
-  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-  const day = value.weekday;
-  const current = Number(value.hour) * 60 + Number(value.minute);
-  const schedule: Record<string, [number, number] | null> = {
-    Mon: [7 * 60, 19 * 60],
-    Tue: [7 * 60, 19 * 60],
-    Wed: [7 * 60, 19 * 60],
-    Thu: [7 * 60, 19 * 60],
-    Fri: [7 * 60, 19 * 60],
-    Sat: [8 * 60 + 30, 13 * 60],
-    Sun: null,
-  };
-  const today = schedule[day];
-
-  if (today && current >= today[0] && current < today[1]) {
-    const close = day === "Sat" ? "1:00 PM" : "7:00 PM";
-    return { open: true, label: `Open today until ${close}` };
-  }
-
-  return {
-    open: false,
-    label: day === "Sat" ? "Closed · Opens Monday at 7:00 AM" : "Closed now",
-  };
-}
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [status, setStatus] = useState({ open: true, label: "Open today" });
-
-  useEffect(() => {
-    const update = () => setStatus(getBusinessStatus());
-    update();
-    const timer = window.setInterval(update, 60_000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   return (
     <>
@@ -152,6 +101,7 @@ export default function Home() {
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#reviews" onClick={() => setMenuOpen(false)}>Reviews</a>
           <a href="#visit" onClick={() => setMenuOpen(false)}>Visit</a>
+          <a href="/hours" onClick={() => setMenuOpen(false)}>Hours</a>
           <a className="nav-call" href={`tel:${phoneHref}`}>Call {phoneDisplay}</a>
         </nav>
       </header>
@@ -183,10 +133,10 @@ export default function Home() {
               <img src="/pressed-shirts.webp" alt="Clean dress shirts hanging neatly on a garment rack" />
               <div className="photo-label"><small>Pressed with care</small><strong>Ready to wear</strong></div>
             </div>
-            <div className={status.open ? "open-card" : "open-card closed-card"}>
-              <span className="status-dot" aria-hidden="true" />
-              <div><small>{status.open ? "We’re open" : "We’re closed"}</small><strong>{status.label}</strong></div>
-            </div>
+            <a className="open-card" href="/hours">
+              <span className="status-dot private-dot" aria-hidden="true" />
+              <div><small>Private schedule</small><strong>View password-protected hours</strong></div>
+            </a>
           </div>
         </section>
 
@@ -256,10 +206,13 @@ export default function Home() {
               <a className="button button-primary" href={directionsUrl} target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a>
               <a className="button button-secondary" href={`tel:${phoneHref}`}>{phoneDisplay}</a>
             </div>
-            <div className="hours">
-              <div className="hours-title"><h3>Shop hours</h3><span className={status.open ? "hours-status" : "hours-status is-closed"}>{status.open ? "Open now" : "Closed now"}</span></div>
-              <dl>{hours.map(([day, time]) => <div key={day}><dt>{day}</dt><dd>{time}</dd></div>)}</dl>
-              <p>Holiday hours may vary. Call ahead if you’re making a special trip.</p>
+            <div className="protected-hours-link">
+              <div>
+                <p className="kicker">Private page</p>
+                <h3>Shop hours</h3>
+                <p>The full weekly schedule is available on our password-protected hours page.</p>
+              </div>
+              <a className="button button-secondary" href="/hours">View hours</a>
             </div>
           </div>
         </section>

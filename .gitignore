@@ -1,42 +1,93 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
+# Dependencies and package-manager data
+node_modules/
+jspm_packages/
+web_modules/
 /.pnp
 .pnp.*
+.pnpm-store
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+!.yarn/sdks
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/.vinext/
-/out/
-
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Logs and diagnostic reports
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 .pnpm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# env files (can opt-in for committing if needed)
-.env*
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# vercel
+# Coverage and test output
+coverage/
+*.lcov
+.nyc_output
+lib-cov
+
+# Framework and build output
+.next/
+.vinext/
+out/
+dist/
+.output/
+.nuxt/
+.svelte-kit/
+.vuepress/dist
+**/.vitepress/dist
+**/.vitepress/cache
+.docusaurus
+build/Release
+
+# Tool caches
+.cache/
+.parcel-cache
+.grunt
+.npm
+.eslintcache
+.stylelintcache
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.temp
+.fusebox
+.tern-port
+.vscode-test
+.lock-wscript
+
+# Hosting and local platform state
 .vercel
+.wrangler/
+.serverless/
+.firebase/
+.dynamodb/
+outputs/
+work/
 
-# typescript
+# Environment files and private keys
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Generated and local files
+*.tsbuildinfo
 next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
+*.tgz
+.yarn-integrity
+.node_repl_history
+.DS_Store
+bower_components/

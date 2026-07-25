@@ -448,7 +448,7 @@ h1 em { color: var(--coral); font-weight: 500; }
   padding: 46px clamp(22px, 6vw, 90px) 38px;
   display: grid;
   grid-template-columns: 1fr 1fr auto;
-  align-items: end;
+  align-items: center;
   gap: 50px;
   background: #0b1d2f;
   color: white;

@@ -20,12 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: origin },
     openGraph: {
       title: "JS Cleaners | McDonough, Georgia",
-      description: "Care you can feel. Quality you can see.",
+      description: "Local dry cleaning, alterations, and careful garment service on Highway 81.",
       type: "website",
       url: origin,
       images: [
         {
-          url: `${origin}/og.png`,
+          url: `${origin}/og-v2.png`,
           width: 1536,
           height: 1024,
           alt: "JS Cleaners in McDonough, Georgia",
@@ -35,8 +35,8 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "JS Cleaners | McDonough, Georgia",
-      description: "Care you can feel. Quality you can see.",
-      images: [`${origin}/og.png`],
+      description: "Local dry cleaning, alterations, and careful garment service on Highway 81.",
+      images: [`${origin}/og-v2.png`],
     },
   };
 }

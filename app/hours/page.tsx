@@ -7,10 +7,6 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Shop Hours | JS Cleaners",
   description: "The current weekly shop hours for JS Cleaners in McDonough, Georgia.",
-  robots: {
-    index: false,
-    follow: false,
-  },
 };
 
 const phoneDisplay = "(678) 583-4727";
@@ -20,12 +16,12 @@ const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=1664+Hwy+81%2C+McDonough%2C+GA+30252";
 
 const hours = [
-  ["Monday", "7:00 AM – 7:00 PM"],
-  ["Tuesday", "7:00 AM – 7:00 PM"],
-  ["Wednesday", "7:00 AM – 7:00 PM"],
-  ["Thursday", "7:00 AM – 7:00 PM"],
-  ["Friday", "7:00 AM – 7:00 PM"],
-  ["Saturday", "8:30 AM – 1:00 PM"],
+  ["Monday", "7:00 AM to 7:00 PM"],
+  ["Tuesday", "7:00 AM to 7:00 PM"],
+  ["Wednesday", "7:00 AM to 7:00 PM"],
+  ["Thursday", "7:00 AM to 7:00 PM"],
+  ["Friday", "7:00 AM to 7:00 PM"],
+  ["Saturday", "8:30 AM to 1:00 PM"],
   ["Sunday", "Closed"],
 ];
 
@@ -84,9 +80,9 @@ export default async function HoursPage() {
       <main className="hours-page" id="hours-main">
         <section className="hours-hero">
           <div className="hours-page-heading">
-            <p className="kicker">Plan your visit</p>
-            <h1>Shop hours.</h1>
-            <p>Our current weekly schedule is below. Holiday hours may vary, so call ahead if you are making a special trip.</p>
+            <p className="kicker">Open to everyone</p>
+            <h1>Shop hours</h1>
+            <p>Here’s our regular weekly schedule. Holiday hours may vary, so give us a call before making a special trip.</p>
           </div>
 
           <div className="hours-panel">
@@ -119,7 +115,7 @@ export default async function HoursPage() {
       </main>
 
       <footer className="site-footer hours-footer">
-        <div className="footer-brand"><span className="brand-mark">JS</span><div><strong>JS Cleaners</strong><span>Care you can feel. Quality you can see.</span></div></div>
+        <div className="footer-brand"><span className="brand-mark">JS</span><div><strong>JS Cleaners</strong><span>Dry cleaning and alterations in McDonough</span></div></div>
         <div className="footer-contact"><a href={`tel:${phoneHref}`}>{phoneDisplay}</a><a href={directionsUrl} target="_blank" rel="noreferrer">{address}</a></div>
         <div className="footer-meta"><span>© {new Date().getFullYear()} JS Cleaners</span><Link href="/">Return home</Link></div>
       </footer>

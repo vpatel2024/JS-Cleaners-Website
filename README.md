@@ -92,21 +92,11 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
-## Protected Hours Page
+## Public Hours Page
 
-The `/hours` route is protected by HTTP Basic authentication at the Worker
-boundary. The page is dynamic and marked `noindex`, so its rendered schedule is
-not emitted as a public static page.
-
-Set these values as Cloudflare Worker secrets or local `.dev.vars` entries:
-
-```dotenv
-HOURS_PAGE_USERNAME=admin
-HOURS_PAGE_PASSWORD=replace-with-a-long-random-password
-```
-
-`HOURS_PAGE_PASSWORD` is required. `HOURS_PAGE_USERNAME` defaults to `admin`
-when omitted. Never commit `.dev.vars`; it is ignored by Git.
+The `/hours` route is public so customers can check the regular weekly schedule
+without a password. Holiday hours can be updated in `app/hours/page.tsx` and on
+the homepage in `app/page.tsx`.
 
 ## Learn More
 

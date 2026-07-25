@@ -18,6 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Friendly local dry cleaning, shirt laundry, alterations, uniform care, and more at JS Cleaners on Highway 81 in McDonough.",
     alternates: { canonical: origin },
+    icons: {
+      icon: [{ url: "/js-cleaners-icon.png", type: "image/png" }],
+      apple: "/js-cleaners-icon.png",
+    },
     openGraph: {
       title: "JS Cleaners | McDonough, Georgia",
       description: "Local dry cleaning, alterations, and careful garment service on Highway 81.",
@@ -25,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: origin,
       images: [
         {
-          url: `${origin}/og-v2.png`,
+          url: `${origin}/og-v3.jpg`,
           width: 1536,
           height: 1024,
           alt: "JS Cleaners in McDonough, Georgia",
@@ -36,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "JS Cleaners | McDonough, Georgia",
       description: "Local dry cleaning, alterations, and careful garment service on Highway 81.",
-      images: [`${origin}/og-v2.png`],
+      images: [`${origin}/og-v3.jpg`],
     },
   };
 }

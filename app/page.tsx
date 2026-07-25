@@ -82,11 +82,13 @@ export default function Home() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="JS Cleaners home">
-          <span className="brand-mark">JS</span>
-          <span>
-            <strong>JS Cleaners</strong>
-            <small>McDonough, Georgia</small>
-          </span>
+          <img
+            className="brand-logo"
+            src="/js-cleaners-logo-main.png"
+            alt="JS Cleaners, McDonough, Georgia"
+            width="900"
+            height="275"
+          />
         </a>
         <button
           className="menu-button"
@@ -224,7 +226,15 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <div className="footer-brand"><span className="brand-mark">JS</span><div><strong>JS Cleaners</strong><span>Dry cleaning and alterations in McDonough</span></div></div>
+        <div className="footer-brand">
+          <img
+            className="footer-logo"
+            src="/js-cleaners-logo-white.png"
+            alt="JS Cleaners, McDonough, Georgia"
+            width="900"
+            height="283"
+          />
+        </div>
         <div className="footer-contact"><a href={`tel:${phoneHref}`}>{phoneDisplay}</a><a href={directionsUrl} target="_blank" rel="noreferrer">{address}</a></div>
         <div className="footer-meta"><span>© {new Date().getFullYear()} JS Cleaners</span><span>Serving McDonough, Georgia</span></div>
       </footer>

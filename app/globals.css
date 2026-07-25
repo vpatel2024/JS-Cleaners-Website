@@ -58,35 +58,10 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px);
 }
-.brand, .footer-brand { display: flex; align-items: center; gap: 12px; }
-.brand-mark {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-  background: var(--navy);
-  color: var(--paper);
-  border-radius: 50% 50% 50% 12px;
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-}
-.brand strong, .brand small { display: block; }
-.brand strong {
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 20px;
-  line-height: 1.05;
-}
-.brand small {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.brand { display: block; flex: 0 0 auto; }
+.brand-logo {
+  width: clamp(210px, 20vw, 260px);
+  height: auto;
 }
 .nav {
   display: flex;
@@ -478,17 +453,11 @@ h1 em { color: var(--coral); font-weight: 500; }
   background: #0b1d2f;
   color: white;
 }
-.footer-brand > .brand-mark {
-  display: grid;
-  place-items: center;
-  background: var(--cream);
-  color: var(--navy);
-  border-radius: 50%;
-  line-height: 1;
+.footer-brand {
+  width: min(100%, 300px);
 }
-.footer-brand strong, .footer-brand div > span { display: block; }
-.footer-brand strong { font-family: var(--serif); font-size: 20px; }
-.footer-brand div span, .footer-meta { color: #95a8b7; font-size: 11px; }
+.footer-logo { width: 100%; height: auto; }
+.footer-meta { color: #95a8b7; font-size: 11px; }
 .footer-contact a { display: block; color: #cdd8df; font-size: 13px; }
 .footer-meta { text-align: right; }
 .footer-meta a, .footer-meta span { display: block; }
@@ -515,14 +484,12 @@ h1 em { color: var(--coral); font-weight: 500; }
 @media (max-width: 760px) {
   body { padding-bottom: 64px; }
   .site-header { min-height: 72px; padding: 10px 18px; }
-  .brand-mark { width: 42px; height: 42px; }
-  .brand strong { font-size: 18px; }
-  .brand small { font-size: 8px; }
+  .brand-logo { width: min(210px, 60vw); }
   .menu-button { width: 42px; height: 42px; padding: 0 10px; display: grid; align-content: center; gap: 6px; border: 0; background: transparent; }
   .menu-button span { height: 2px; display: block; background: var(--navy); }
   .nav {
     position: absolute;
-    top: 71px;
+    top: 100%;
     left: 0;
     right: 0;
     padding: 22px;

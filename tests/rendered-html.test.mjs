@@ -15,7 +15,10 @@ test("finished site replaces the starter preview", async () => {
   assert.doesNotMatch(page, /handleRequest|Prepare my text|sms:/);
   assert.doesNotMatch(page, /Private page|password-protected|Private schedule/);
   assert.doesNotMatch(page, /—|&mdash;|&#8212;/);
-  assert.match(layout, /og-v2\.png/);
+  assert.match(page, /js-cleaners-logo-main\.png/);
+  assert.match(page, /js-cleaners-logo-white\.png/);
+  assert.match(layout, /og-v3\.jpg/);
+  assert.match(layout, /js-cleaners-icon\.png/);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 });
@@ -23,7 +26,10 @@ test("finished site replaces the starter preview", async () => {
 test("deployment assets are present", async () => {
   await access(new URL("public/garments-ready.webp", root));
   await access(new URL("public/pressing-care.webp", root));
-  await access(new URL("public/og-v2.png", root));
+  await access(new URL("public/js-cleaners-logo-main.png", root));
+  await access(new URL("public/js-cleaners-logo-white.png", root));
+  await access(new URL("public/js-cleaners-icon.png", root));
+  await access(new URL("public/og-v3.jpg", root));
   await access(new URL(".openai/hosting.json", root));
 });
 
